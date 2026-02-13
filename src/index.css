@@ -1,0 +1,529 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  /* IBM Research Inspired Palette */
+  --ibm-blue: #0f62fe;
+  --ibm-blue-dark: #002d9c;
+  --ibm-gray-10: #f4f4f4;
+  --ibm-gray-20: #e0e0e0;
+  --ibm-gray-90: #262626;
+  --ibm-gray-100: #161616;
+  --white: #ffffff;
+
+  --text-primary: var(--ibm-gray-100);
+  --text-secondary: #525252;
+  --text-inverse: var(--white);
+
+  --bg-primary: var(--white);
+  --bg-secondary: var(--ibm-gray-10);
+
+  --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  --container-max: 1440px;
+  --transition: all 0.2s cubic-bezier(0.2, 0, 0.38, 0.9);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+h1 {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--ibm-blue);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* Navigation */
+.header {
+  border-bottom: 1px solid var(--ibm-gray-20);
+  position: sticky;
+  top: 0;
+  background: var(--bg-primary);
+  z-index: 100;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.logo span {
+  font-weight: 300;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  font-weight: 400;
+  transition: var(--transition);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--ibm-blue);
+  font-weight: 600;
+}
+
+/* Hero */
+.hero {
+  padding: 6rem 0;
+  border-bottom: 1px solid var(--ibm-gray-20);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 4rem;
+  align-items: end;
+}
+
+.hero-text p {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+}
+
+/* Sections */
+/* Media Overlays */
+.media-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(22, 22, 22, 0.9) 0%, rgba(22, 22, 22, 0.4) 100%);
+  z-index: 1;
+}
+
+.hero-with-bg {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  color: var(--white);
+  overflow: hidden;
+  padding: 0;
+  border-bottom: none;
+}
+
+.hero-with-bg .container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-with-bg h1 {
+  color: var(--white);
+}
+
+.hero-with-bg p {
+  color: var(--ibm-gray-10);
+}
+
+.bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+
+.card-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--ibm-gray-20);
+  transition: var(--transition);
+}
+
+.section {
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--ibm-gray-20);
+}
+
+.section-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Cards */
+.research-card {
+  border: 1px solid var(--ibm-gray-20);
+  padding: 1.5rem;
+  background: var(--bg-primary);
+  transition: var(--transition);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+.research-card:hover {
+  background: var(--ibm-gray-10);
+  border-color: var(--ibm-blue);
+}
+
+.research-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.research-card p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background: var(--ibm-blue);
+  color: var(--white);
+  text-decoration: none;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn:hover {
+  background: var(--ibm-blue-dark);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ibm-blue);
+  border: 1px solid var(--ibm-blue);
+}
+
+/* Footer */
+.footer {
+  padding: 4rem 0;
+  background: var(--ibm-gray-100);
+  color: var(--ibm-gray-10);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 4rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-links a {
+  color: var(--ibm-gray-10);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+/* Utils */
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 2rem;
+}
+
+@keyframes revealUp {
+  from {
+    transform: translateY(100%);
+    clip-path: inset(0 0 100% 0);
+  }
+
+  to {
+    transform: translateY(0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes imageZoom {
+  from {
+    transform: scale(1.1);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+.reveal-text {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.reveal-text span {
+  display: block;
+  animation: revealUp 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+.hero-about {
+  padding: 10rem 0 6rem;
+  background: var(--bg-primary);
+}
+
+.hero-about h1 {
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 300;
+  max-width: 1000px;
+}
+
+.mono-label-ibm {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-left: 2px solid var(--ibm-blue);
+  padding-left: 1rem;
+  margin-bottom: 2rem;
+  display: block;
+}
+
+.img-reveal-container {
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.img-reveal-container img {
+  transform: scale(1.1);
+  animation: imageZoom 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-slide {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.1s;
+}
+
+.delay-2 {
+  animation-delay: 0.2s;
+}
+
+.delay-3 {
+  animation-delay: 0.3s;
+}
+
+.delay-4 {
+  animation-delay: 0.4s;
+}
+
+/* Mobile Navigation Toggle (Hidden by default) */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary);
+}
+
+@media (max-width: 1024px) {
+  h1 {
+    font-size: 2.75rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .hero-grid,
+  .footer-grid,
+  .section-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .nav-links {
+    display: none;
+    /* In a real app, you'd add a toggle state here */
+  }
+
+  .mobile-toggle {
+    display: block;
+  }
+
+  .hero-with-bg {
+    min-height: 60vh;
+  }
+
+  .hero-about {
+    padding: 6rem 0 3rem;
+  }
+
+  .hero-about h1 {
+    font-size: 3rem;
+  }
+
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-about h1 {
+    font-size: 2.5rem;
+  }
+
+  .section {
+    padding: 3rem 0;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* About Page Grid */
+  .hero-about+.container>div {
+    grid-template-columns: 1fr !important;
+    gap: 3rem !important;
+  }
+
+  .img-reveal-container img {
+    min-height: 400px !important;
+  }
+
+  /* Home Page Mission Section */
+  .section .container>div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* Contact Page Grid */
+  .container.section>div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* Publications Grid */
+  div[style*="grid-template-columns: 80px 1fr 200px"] {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+
+  div[style*="grid-template-columns: 80px 1fr 200px"] div:last-child {
+    text-align: left !important;
+  }
+
+  /* News Grid */
+  div[style*="grid-template-columns: 150px 1fr 150px"] {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem;
+  }
+
+  div[style*="grid-template-columns: 150px 1fr 150px"] div:last-child {
+    text-align: left !important;
+  }
+}
