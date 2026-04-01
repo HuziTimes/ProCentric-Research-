@@ -1,121 +1,168 @@
-import { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
-import { BookOpen, Cpu, ShieldAlert, Globe } from 'lucide-react';
-
-// Import Assets
-import insuranceImg from '../assets/images/insurance_new.png';
-import aimlImg from '../assets/images/aiml_new.png';
-import safetyImg from '../assets/images/safety_new.png';
-import disasterImg from '../assets/images/disaster_new.png';
-
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import {
+    CloudLightning, BrainCircuit, ShieldAlert, Map,
+    DollarSign, Bell, Database, Briefcase, Network, ArrowRight
+} from 'lucide-react';
 
 const ResearchAreas = () => {
-    const [searchParams] = useSearchParams();
-    const q = searchParams.get('search') || searchParams.get('q') || '';
-    const [areas, setAreas] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
     useEffect(() => {
-        const fetchAreas = async () => {
-            try {
-                setLoading(true);
-                setError(null);
-                const url = q.trim()
-                    ? `${API_BASE}/api/research-areas/?search=${encodeURIComponent(q.trim())}`
-                    : `${API_BASE}/api/research-areas/`;
-                const res = await fetch(url);
-                if (!res.ok) throw new Error('Failed to load research areas');
-                const data = await res.json();
-                const results = data.results ?? data;
-                setAreas(Array.isArray(results) ? results : []);
-            } catch (err) {
-                setError(err.message || 'Something went wrong');
-                setAreas([]);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchAreas();
-    }, [q]);
+        window.scrollTo(0, 0);
+    }, []);
 
-    const getImageUrl = (imagePath) => {
-        if (!imagePath) return null;
-        if (imagePath.startsWith('http')) return imagePath;
-        const base = API_BASE.replace(/\/$/, '');
-        const path = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
-        return `${base}/media${path}`;
-    };
-
-    const sortedAreas = [...areas].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-    const ICONS = [<BookOpen />, <Cpu />, <ShieldAlert />, <Globe />];
-    const LOCAL_IMAGES = [insuranceImg, aimlImg, safetyImg, disasterImg];
-
-    if (loading) {
-        return (
-            <div className="list-page">
-                <div className="list-page-header">
-                    <div className="container">
-                        <span className="mono-label">Areas of Investigation</span>
-                        <h1>Research Areas</h1>
-                    </div>
-                </div>
-                <div className="container list-page-content">
-                    <div className="list-loading">Loading research areas…</div>
-                </div>
-            </div>
-        );
-    }
-
-    if (error) {
-        return (
-            <div className="list-page">
-                <div className="list-page-header">
-                    <div className="container">
-                        <span className="mono-label">Areas of Investigation</span>
-                        <h1>Research Areas</h1>
-                    </div>
-                </div>
-                <div className="container list-page-content">
-                    <div className="list-error">{error}</div>
-                </div>
-            </div>
-        );
-    }
+    const AREAS = [
+        {
+            title: 'Natural Disaster Risk Analysis',
+            icon: CloudLightning,
+            color: '#0f62fe',
+            desc: 'We analyze historical disaster patterns across the United States to understand frequency, distribution, and long-term trends. This includes hurricanes, floods, wildfires, and tornadoes.',
+            highlights: ['Disaster frequency by region', 'Seasonal patterns', 'Long-term climate trends']
+        },
+        {
+            title: 'Predictive Modeling & ML',
+            icon: BrainCircuit,
+            color: '#8a3ffc',
+            desc: 'Our research leverages advanced machine learning techniques to predict disaster occurrence, estimate severity, and forecast potential impacts.',
+            highlights: ['Classification models', 'Regression models (loss estimation)', 'Time-series forecasting']
+        },
+        {
+            title: 'Insurance Risk Modeling',
+            icon: ShieldAlert,
+            color: '#198038',
+            desc: 'We develop data-driven models to assess insurance risk, estimate claim volumes, and project financial losses based on disaster patterns.',
+            highlights: ['Claim prediction models', 'Loss estimation', 'Risk-based pricing strategies']
+        },
+        {
+            title: 'Geospatial Risk Mapping',
+            icon: Map,
+            color: '#0043ce',
+            desc: 'Using geospatial analytics, we map disaster risks across the United States to identify high-risk zones and visualize regional vulnerabilities.',
+            highlights: ['Risk heatmaps', 'Geographic clustering', 'State-level analysis']
+        },
+        {
+            title: 'Financial Impact Analysis',
+            icon: DollarSign,
+            color: '#f1c21b',
+            desc: 'Our research evaluates the economic impact of disasters, focusing on insurance losses and expansive financial risk exposure.',
+            highlights: ['Billion-dollar disaster events', 'Cost trends over time', 'High-loss regions']
+        },
+        {
+            title: 'Early Warning & Forecasting',
+            icon: Bell,
+            color: '#fa4d56',
+            desc: 'We design systems that provide early warnings for potential disasters using predictive analytics, enabling proactive response and preparedness.',
+            highlights: ['Short-term risk alerts', 'Seasonal predictions', 'Preventive insights']
+        },
+        {
+            title: 'Data Engineering & Processing',
+            icon: Database,
+            color: '#393939',
+            desc: 'Our models are powered by large-scale datasets including FEMA disaster declarations sourced natively, processed through advanced data pipelines.',
+            highlights: ['Data cleaning & preprocessing', 'Feature engineering', 'Dataset integration']
+        },
+        {
+            title: 'Decision Support Systems',
+            icon: Briefcase,
+            color: '#0f62fe',
+            desc: 'We translate complex topological data safely into actionable insights that support massive commercial insurers and policymakers directly in making informed decisions.',
+            highlights: ['Premium recommendations', 'Risk scoring systems', 'Strategic planning']
+        },
+        {
+            title: 'Interdisciplinary Work',
+            icon: Network,
+            color: '#8a3ffc',
+            desc: 'Our structural methodology systematically combines raw data science, geographical climate analysis, and insurance algorithms to deliver totally comprehensive risk intelligence.',
+            highlights: ['Data science scaling', 'Geographical analytics', 'Insurance statistics']
+        }
+    ];
 
     return (
-        <div className="list-page">
-            <div className="list-page-header">
-                <div className="container">
-                    <span className="mono-label">Areas of Investigation</span>
-                    <h1>Research Areas</h1>
-                    {q && (
-                        <p style={{ marginTop: '0.5rem', fontSize: 'var(--font-size-body-compact)', color: 'var(--text-secondary)' }}>
-                            {areas.length} result{areas.length !== 1 ? 's' : ''} for "{q}"
-                        </p>
-                    )}
+        <div style={{ backgroundColor: '#f9fafb', minHeight: '100vh', paddingBottom: '6rem' }}>
+
+            {/* 1. Page Header */}
+            <div style={{ backgroundColor: '#ffffff', padding: '6rem 1rem', textAlign: 'center', borderBottom: '1px solid #eaeaea', position: 'relative', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundImage: 'linear-gradient(45deg, #f9fafb 25%, transparent 25%, transparent 75%, #f9fafb 75%, #f9fafb), linear-gradient(45deg, #f9fafb 25%, transparent 25%, transparent 75%, #f9fafb 75%, #f9fafb)', backgroundSize: '60px 60px', backgroundPosition: '0 0, 30px 30px', opacity: 0.5 }}></div>
+                <div style={{ maxWidth: '900px', margin: '0 auto', position: 'relative' }}>
+                    <h1 style={{ fontSize: '3.5rem', fontWeight: 800, color: '#111827', marginBottom: '1.5rem', letterSpacing: '-0.02em' }}>Our Research Areas</h1>
+                    <p style={{ fontSize: '1.25rem', color: '#4b5563', lineHeight: 1.6 }}>
+                        Focused research domains driving innovation in natural disaster risk assessment and insurance intelligence across the United States.
+                    </p>
                 </div>
             </div>
-            <div className="container list-page-content">
-                <div className="section-grid">
-                    {sortedAreas.map((area, i) => (
-                        <Link to={`/research/${area.slug}`} key={area.id || i} className={`research-card animate-slide delay-${(i % 4) + 1}`} style={{ padding: 0, overflow: 'hidden', opacity: 0 }}>
-                            <img
-                                src={area.image ? getImageUrl(area.image) : LOCAL_IMAGES[i % LOCAL_IMAGES.length]}
-                                alt={area.title}
-                                className="card-image"
-                            />
-                            <div style={{ padding: '1.5rem' }}>
-                                <div style={{ color: 'var(--ibm-blue)', marginBottom: '1rem' }}>
-                                    {ICONS[i % ICONS.length]}
+
+            {/* Bold One-Liner */}
+            <div style={{ backgroundColor: '#111827', color: 'white', padding: '2.5rem 1rem', textAlign: 'center', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
+                <p style={{ fontSize: '1.5rem', fontWeight: 700, margin: 0, fontStyle: 'italic', letterSpacing: '0.02em', color: "white" }}>
+                    “Where data meets disaster intelligence — transforming uncertainty into strategy.”
+                </p>
+            </div>
+
+            <div className="container" style={{ marginTop: '4rem', display: 'flex', flexDirection: 'column', gap: '5rem' }}>
+
+                {/* Grid Layout (Areas 2-10) */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2.5rem' }}>
+                    {AREAS.map((area, i) => (
+                        <Link to={`/research/${area.title.toLowerCase().replace(/ /g, '-').replace(/&/g, 'and')}`} key={i} style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <div style={{
+                                backgroundColor: '#ffffff',
+                                padding: '2.5rem',
+                                borderRadius: '16px',
+                                border: '1px solid #eaeaea',
+                                height: '100%',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                                cursor: 'pointer',
+                                boxShadow: '0 4px 6px rgba(0,0,0,0.02)'
+                            }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.transform = 'translateY(-8px)';
+                                    e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.08)';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.transform = 'translateY(0)';
+                                    e.currentTarget.style.boxShadow = '0 4px 6px rgba(0,0,0,0.02)';
+                                }}>
+                                <div style={{ width: '56px', height: '56px', backgroundColor: `${area.color}15`, color: area.color, borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
+                                    <area.icon size={28} />
                                 </div>
-                                <h3>{area.title}</h3>
-                                <p>{area.short_description || area.desc}</p>
+                                <h2 style={{ fontSize: '1.35rem', fontWeight: 700, color: '#111827', marginBottom: '1rem' }}>{area.title}</h2>
+                                <p style={{ color: '#4b5563', lineHeight: 1.6, marginBottom: '2rem', flex: 1 }}>{area.desc}</p>
+
+                                <div style={{ borderTop: '1px solid #eaeaea', paddingTop: '1.5rem' }}>
+                                    <h4 style={{ fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase', color: '#9ca3af', marginBottom: '1rem', letterSpacing: '0.05em' }}>Key Focus</h4>
+                                    <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                                        {area.highlights.map((hilite, j) => (
+                                            <li key={j} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                                                <div style={{ width: '6px', height: '6px', backgroundColor: area.color, borderRadius: '50%', marginTop: '8px' }}></div>
+                                                <span style={{ color: '#374151', fontSize: '0.95rem', fontWeight: 500 }}>{hilite}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
                             </div>
                         </Link>
                     ))}
                 </div>
+
+                {/* Our Research Impact Section */}
+                <div style={{ backgroundColor: '#e0e7ff', padding: '4rem', borderRadius: '24px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+                    <div style={{ position: 'absolute', top: '-10%', right: '-5%', opacity: 0.1 }}>
+                        <CloudLightning size={400} color="#0f62fe" />
+                    </div>
+                    <div style={{ position: 'relative', zIndex: 1 }}>
+                        <div style={{ display: 'inline-block', padding: '0.5rem 1.5rem', backgroundColor: '#0f62fe', color: 'white', borderRadius: '30px', fontWeight: 700, fontSize: '0.9rem', marginBottom: '1.5rem', letterSpacing: '0.05em' }}>
+                            OUR RESEARCH IMPACT
+                        </div>
+                        <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#111827', marginBottom: '1.5rem', maxWidth: '800px', margin: '0 auto 1.5rem auto' }}>
+                            Redefining Institutional Stability
+                        </h2>
+                        <p style={{ fontSize: '1.25rem', color: '#4b5563', lineHeight: 1.7, maxWidth: '900px', margin: '0 auto' }}>
+                            Our research actively enables massive corporate insurers to shift from a legacy stance of reactive loss handling to a new baseline of <strong>proactive risk management</strong>—fundamentally improving infrastructure resilience and financial stability across the entire United States.
+                        </p>
+                    </div>
+                </div>
+
             </div>
         </div>
     );
