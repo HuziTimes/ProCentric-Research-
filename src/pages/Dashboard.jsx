@@ -190,7 +190,7 @@ const Dashboard = () => {
 
                 {/* 2. Map & Insights Row */}
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr lg:2fr', gap: '2rem' }}>
-                    <div style={{ gridColumn: '1 / -1', '@media(min-width: 1024px)': { gridColumn: 'span 2' } }}>
+                    <div style={{ gridColumn: '1 / -1' }}>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', height: '100%' }}>
                             {/* Interactive Map via Recharts Scatter */}
                             <DashboardCard

@@ -21,11 +21,6 @@ import Search from './pages/Search';
 import Contact from './pages/Contact';
 import Dashboard from './pages/Dashboard';
 import Insights from './pages/Insights';
-import DisasterOverview from './pages/DisasterOverview';
-import PredictiveModeling from './pages/PredictiveModeling';
-import ModelEvaluation from './pages/ModelEvaluation';
-import Methodology from './pages/Methodology';
-import WhyItMatters from './pages/WhyItMatters';
 
 function App() {
   const { pathname } = useLocation();
@@ -54,11 +49,6 @@ function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/insights" element={<Insights />} />
-          <Route path="/overview" element={<DisasterOverview />} />
-          <Route path="/modeling" element={<PredictiveModeling />} />
-          <Route path="/evaluation" element={<ModelEvaluation />} />
-          <Route path="/methodology" element={<Methodology />} />
-          <Route path="/why-it-matters" element={<WhyItMatters />} />
           <Route path="/privacy" element={<div>Privacy Policy</div>} />
         </Routes>
       </div>
