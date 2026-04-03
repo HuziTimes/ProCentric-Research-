@@ -1,0 +1,110 @@
+﻿
+> procentric@0.0.0 build
+> vite build
+
+[36mvite v7.3.1 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32mΓ£ô[39m 2790 modules transformed.
+node.exe : [31mΓ£ù[39m 
+Build failed in 6.38s
+At C:\Program 
+Files\nodejs\npm.ps1:29 char:3
++   & $NODE_EXE $NPM_CLI_JS 
+$args
++   
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : 
+    NotSpecified: ([31mΓ£ù  
+  [39m Build failed in 6.38   
+ s:String) [], RemoteExcep    
+tion
+    + FullyQualifiedErrorId : 
+    NativeCommandError
+ 
+[31merror during build:
+[31msrc/pages/ProjectDetails.
+jsx (4:22): "Tool" is not 
+exported by "node_modules/luci
+de-react/dist/esm/lucide-react
+.js", imported by "src/pages/P
+rojectDetails.jsx".[31m
+file: [36mC:/Users/Huzaifa As
+hraf/OneDrive/Desktop/huzaifa/
+research-frontend/src/pages/Pr
+ojectDetails.jsx:4:22[31m
+[33m
+2: import { useState, 
+useEffect } from 'react';
+3: import { motion } from 
+'framer-motion';
+4: import { CheckCircle, 
+Tool, Target, Image as 
+ImageIcon } from 
+'lucide-react';
+                         ^
+5: 
+6: const API_BASE = 
+import.meta.env.VITE_API_URL 
+|| 'http://localhost:8000';
+[31m
+    at getRollupError (file://
+/C:/Users/Huzaifa%20Ashraf/One
+Drive/Desktop/huzaifa/research
+-frontend/node_modules/rollup/
+dist/es/shared/parseAst.js:402
+:41)
+    at error (file:///C:/Users
+/Huzaifa%20Ashraf/OneDrive/Des
+ktop/huzaifa/research-frontend
+/node_modules/rollup/dist/es/s
+hared/parseAst.js:398:42)
+    at Module.error (file:///C
+:/Users/Huzaifa%20Ashraf/OneDr
+ive/Desktop/huzaifa/research-f
+rontend/node_modules/rollup/di
+st/es/shared/node-entry.js:170
+40:16)
+    at Module.traceVariable (f
+ile:///C:/Users/Huzaifa%20Ashr
+af/OneDrive/Desktop/huzaifa/re
+search-frontend/node_modules/r
+ollup/dist/es/shared/node-entr
+y.js:17452:29)
+    at 
+ModuleScope.findVariable (file
+:///C:/Users/Huzaifa%20Ashraf/
+OneDrive/Desktop/huzaifa/resea
+rch-frontend/node_modules/roll
+up/dist/es/shared/node-entry.j
+s:15070:39)
+    at 
+ReturnValueScope.findVariable 
+(file:///C:/Users/Huzaifa%20As
+hraf/OneDrive/Desktop/huzaifa/
+research-frontend/node_modules
+/rollup/dist/es/shared/node-en
+try.js:5673:38)
+    at FunctionBodyScope.findV
+ariable (file:///C:/Users/Huza
+ifa%20Ashraf/OneDrive/Desktop/
+huzaifa/research-frontend/node
+_modules/rollup/dist/es/shared
+/node-entry.js:5673:38)
+    at Identifier.bind (file:/
+//C:/Users/Huzaifa%20Ashraf/On
+eDrive/Desktop/huzaifa/researc
+h-frontend/node_modules/rollup
+/dist/es/shared/node-entry.js:
+5447:40)
+    at CallExpression.bind (fi
+le:///C:/Users/Huzaifa%20Ashra
+f/OneDrive/Desktop/huzaifa/res
+earch-frontend/node_modules/ro
+llup/dist/es/shared/node-entry
+.js:2825:28)
+    at CallExpression.bind (fi
+le:///C:/Users/Huzaifa%20Ashra
+f/OneDrive/Desktop/huzaifa/res
+earch-frontend/node_modules/ro
+llup/dist/es/shared/node-entry
+.js:12179:15)[39m

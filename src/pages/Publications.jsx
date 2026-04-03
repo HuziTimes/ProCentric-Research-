@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import DataTerrainBackground from '../components/DataTerrainBackground';
-import { 
-    FileText, Database, Cpu, Download, BookOpen, 
+import {
+    FileText, Database, Cpu, Download, BookOpen,
     CheckCircle2, AlertTriangle, ArrowRight, Quote, Shield, Activity, Map, BarChart
 } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
@@ -50,21 +50,21 @@ const Publications = () => {
     return (
         <div style={{ backgroundColor: '#f8fafc', paddingBottom: '4rem' }}>
             {/* 1. HERO SECTION */}
-            <div style={{ 
-                background: '#020617', 
-                color: 'white', 
-                padding: '7rem 0 5rem', 
-                position: 'relative', 
-                overflow: 'hidden' 
+            <div style={{
+                background: '#020617',
+                color: 'white',
+                padding: '7rem 0 5rem',
+                position: 'relative',
+                overflow: 'hidden'
             }}>
                 <DataTerrainBackground />
                 <div style={{ position: 'absolute', inset: 0, opacity: 0.05, backgroundImage: 'radial-gradient(circle at 80% 20%, rgba(255,255,255,0.8) 0%, transparent 40%)', zIndex: 1 }} />
                 <div className="container" style={{ position: 'relative', zIndex: 10 }}>
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-                        <span style={{ 
+                        <span style={{
                             display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                            padding: '0.4rem 1rem', borderRadius: '30px', 
-                            backgroundColor: 'rgba(248, 113, 113, 0.1)', color: '#f87171', 
+                            padding: '0.4rem 1rem', borderRadius: '30px',
+                            backgroundColor: 'rgba(248, 113, 113, 0.1)', color: '#f87171',
                             fontWeight: 600, fontSize: '0.9rem', marginBottom: '1.5rem',
                             border: '1px solid rgba(248, 113, 113, 0.2)', textTransform: 'uppercase', letterSpacing: '1px'
                         }}>
@@ -82,7 +82,7 @@ const Publications = () => {
 
             <div className="container" style={{ marginTop: '-3rem', position: 'relative', zIndex: 10 }}>
                 <motion.div variants={staggerContainer} initial="hidden" animate="show">
-                    
+
                     {/* 2. MAIN FEATURED PAPER */}
                     <motion.div variants={fadeUp} style={{ background: 'white', borderRadius: '24px', padding: '3rem', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.1)', border: '1px solid #e2e8f0', marginBottom: '4rem' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem', color: '#b45309', fontWeight: 700, fontSize: '0.95rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
@@ -94,7 +94,7 @@ const Publications = () => {
                         <p style={{ fontSize: '1.2rem', color: '#475569', lineHeight: 1.7, marginBottom: '2rem' }}>
                             This research paper presents a comprehensive analysis of natural disasters across the United States using historical FEMA data and machine learning models to predict occurrence, severity, and financial impact on the insurance sector.
                         </p>
-                        
+
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', marginBottom: '3rem', padding: '1.5rem', background: '#f8fafc', borderRadius: '16px', border: '1px solid #f1f5f9' }}>
                             <div>
                                 <div style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600, textTransform: 'uppercase', marginBottom: '0.25rem' }}>Year</div>
@@ -121,7 +121,7 @@ const Publications = () => {
                     </motion.div>
 
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '3rem', marginBottom: '4rem' }}>
-                        
+
                         {/* 3. ABSTRACT SECTION */}
                         <motion.div variants={fadeUp} style={{ background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)', padding: '3rem', borderRadius: '24px', border: '1px solid #bfdbfe' }}>
                             <h3 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#1e3a8a', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
@@ -184,7 +184,7 @@ const Publications = () => {
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '3rem', marginBottom: '5rem' }}>
                         {/* 6. KEY FINDINGS */}
                         <motion.div variants={fadeUp} style={{ background: '#0f172a', borderRadius: '24px', padding: '3rem', color: 'white' }}>
-                            <h3 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                            <h3 style={{ color: 'white', fontSize: '1.8rem', fontWeight: 800, marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                                 <AlertTriangle size={28} color="#f59e0b" /> Key Findings
                             </h3>
                             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
