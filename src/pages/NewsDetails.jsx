@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Calendar, ArrowLeft } from 'lucide-react';
+import DataTerrainBackground from '../components/DataTerrainBackground';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
@@ -73,14 +74,15 @@ const NewsDetails = () => {
     return (
         <div className="news-detail-page">
             {/* Hero with featured image */}
-            <div className="news-detail-hero">
+            <div className="news-detail-hero" style={{ backgroundColor: '#020617', position: 'relative', overflow: 'hidden' }}>
+                <DataTerrainBackground />
                 {article.image ? (
                     <div className="news-detail-hero-image">
                         <img src={getImageUrl(article.image)} alt={article.title} />
-                        <div className="news-detail-hero-overlay" />
+                        <div className="news-detail-hero-overlay" style={{ background: 'linear-gradient(to top, rgba(2, 6, 23, 0.95) 0%, rgba(2, 6, 23, 0.4) 100%)' }} />
                     </div>
                 ) : (
-                    <div className="news-detail-hero-placeholder" />
+                    <div className="news-detail-hero-placeholder" style={{ background: 'radial-gradient(circle at center, rgba(15,98,254,0.15) 0%, transparent 70%)' }} />
                 )}
                 <div className="news-detail-hero-content">
                     <div className="container">

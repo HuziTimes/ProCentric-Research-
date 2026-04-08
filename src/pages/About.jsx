@@ -6,6 +6,7 @@ import {
     TrendingUp, AlertTriangle, Layers, Globe, CheckCircle, Clock,
     ArrowRight, Users, Play, BarChart2
 } from 'lucide-react';
+import DataTerrainBackground from '../components/DataTerrainBackground';
 
 const TEAM = [
     {
@@ -53,6 +54,7 @@ const About = () => {
                     backgroundImage: 'url("https://images.unsplash.com/photo-1524334228333-0f6db392f8a1?w=1600&q=80")',
                     backgroundSize: 'cover', backgroundPosition: 'center', opacity: 0.3, filter: 'grayscale(100%) contrast(1.2)'
                 }}></div>
+                <DataTerrainBackground />
                 <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(to right, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 100%)' }}></div>
 
                 <div className="container" style={{ position: 'relative', zIndex: 10 }}>

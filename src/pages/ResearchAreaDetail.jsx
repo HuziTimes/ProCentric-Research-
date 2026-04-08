@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Download } from 'lucide-react';
+import DataTerrainBackground from '../components/DataTerrainBackground';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
@@ -62,18 +63,18 @@ const ResearchAreaDetail = () => {
     return (
         <div style={{ paddingBottom: '4rem' }}>
             {/* Header Section */}
-            <div style={{ backgroundColor: 'var(--ibm-gray-10)', padding: '6rem 0 4rem' }}>
-                <div className="container">
-                    <Link to="/research" className="mono-label animate-slide" style={{ opacity: 0, color: 'var(--ibm-blue)', textDecoration: 'none', display: 'inline-block', marginBottom: '2rem' }}>
+            <div style={{ backgroundColor: '#020617', padding: '10rem 0 6rem', position: 'relative', overflow: 'hidden', color: 'white' }}>
+                <DataTerrainBackground />
+                <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 20% 50%, rgba(15,98,254,0.1) 0%, transparent 50%)', zIndex: 1 }}></div>
+                <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+                    <Link to="/research" className="mono-label animate-slide" style={{ color: '#78a9ff', textDecoration: 'none', display: 'inline-block', marginBottom: '2rem' }}>
                         &larr; Back to Research Areas
                     </Link>
-
-                    <h1 className="animate-slide delay-2" style={{ opacity: 0, fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.2, marginBottom: '1rem' }}>
+                    <h1 className="animate-slide delay-2" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.2, marginBottom: '1rem', color: 'white' }}>
                         {area.title}
                     </h1>
-
                     {area.short_description && (
-                        <p className="animate-slide delay-3" style={{ opacity: 0, fontSize: '1.2rem', color: 'var(--ibm-gray-80)', maxWidth: '800px' }}>
+                        <p className="animate-slide delay-3" style={{ fontSize: '1.2rem', color: '#94a3b8', maxWidth: '800px' }}>
                             {area.short_description}
                         </p>
                     )}

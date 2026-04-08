@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import DataAttribution from '../components/DataAttribution';
+import DataTerrainBackground from '../components/DataTerrainBackground';
 
 const TREND_DATA = Array.from({ length: 20 }, (_, i) => ({
     year: 2005 + i,
@@ -20,10 +21,12 @@ const Insights = () => {
         <div style={{ backgroundColor: '#f9fafb', minHeight: '100vh', paddingBottom: '6rem' }}>
 
             {/* 1. Page Header */}
-            <div style={{ backgroundColor: '#ffffff', padding: '6rem 1rem 4rem 1rem', textAlign: 'center', borderBottom: '1px solid #eaeaea' }}>
-                <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-                    <h1 style={{ fontSize: '3rem', fontWeight: 800, color: '#111827', marginBottom: '1rem' }}>Risk Insights & Intelligence</h1>
-                    <p style={{ fontSize: '1.25rem', color: '#4b5563', lineHeight: 1.6 }}>
+            <div style={{ backgroundColor: '#020617', padding: '10rem 1rem 8rem 1rem', textAlign: 'center', borderBottom: '1px solid #1e293b', position: 'relative', overflow: 'hidden' }}>
+                <DataTerrainBackground />
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at center, rgba(15,98,254,0.15) 0%, transparent 70%)', zIndex: 1 }}></div>
+                <div style={{ maxWidth: '800px', margin: '0 auto', position: 'relative', zIndex: 10 }}>
+                    <h1 style={{ fontSize: '3.5rem', fontWeight: 800, color: 'white', marginBottom: '1rem' }}>Risk Insights & Intelligence</h1>
+                    <p style={{ fontSize: '1.25rem', color: '#94a3b8', lineHeight: 1.6 }}>
                         Turning complex disaster data into actionable insights for the United States insurance sector.
                     </p>
                 </div>

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Mail, MapPin, Globe, ArrowRight, Briefcase, BarChart2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import DataTerrainBackground from '../components/DataTerrainBackground';
 
 const Contact = () => {
 
@@ -17,11 +18,12 @@ const Contact = () => {
         <div style={{ backgroundColor: '#f9fafb', minHeight: '100vh', paddingBottom: '6rem' }}>
 
             {/* 1. Page Header */}
-            <div style={{ backgroundColor: '#ffffff', padding: '6rem 1rem 4rem 1rem', textAlign: 'center', borderBottom: '1px solid #eaeaea', position: 'relative', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundImage: 'radial-gradient(#e5e7eb 1px, transparent 1px)', backgroundSize: '24px 24px', opacity: 0.5, pointerEvents: 'none' }}></div>
-                <div style={{ maxWidth: '800px', margin: '0 auto', position: 'relative' }}>
-                    <h1 style={{ fontSize: '3rem', fontWeight: 800, color: '#111827', marginBottom: '1rem', letterSpacing: '-0.02em' }}>Contact Us</h1>
-                    <p style={{ fontSize: '1.25rem', color: '#4b5563', lineHeight: 1.6 }}>
+            <div style={{ backgroundColor: '#020617', padding: '10rem 1rem 8rem 1rem', textAlign: 'center', borderBottom: '1px solid #1e293b', position: 'relative', overflow: 'hidden' }}>
+                <DataTerrainBackground />
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at center, rgba(15,98,254,0.15) 0%, transparent 70%)', zIndex: 1 }}></div>
+                <div style={{ maxWidth: '800px', margin: '0 auto', position: 'relative', zIndex: 10 }}>
+                    <h1 style={{ fontSize: '3.5rem', fontWeight: 800, color: 'white', marginBottom: '1rem', letterSpacing: '-0.02em' }}>Contact Us</h1>
+                    <p style={{ fontSize: '1.25rem', color: '#94a3b8', lineHeight: 1.6 }}>
                         Get in touch with our team for inquiries, collaborations, or more information about our disaster risk intelligence platform.
                     </p>
                 </div>

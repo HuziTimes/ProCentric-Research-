@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Calendar } from 'lucide-react';
+import DataTerrainBackground from '../components/DataTerrainBackground';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
@@ -50,10 +51,12 @@ const News = () => {
     if (loading) {
         return (
             <div className="list-page">
-                <div className="list-page-header">
-                    <div className="container">
-                        <span className="mono-label">Updates</span>
-                        <h1>Division News</h1>
+                <div style={{ backgroundColor: '#020617', padding: '10rem 0 8rem', textAlign: 'center', borderBottom: '1px solid #1e293b', position: 'relative', overflow: 'hidden', color: 'white' }}>
+                    <DataTerrainBackground />
+                    <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, rgba(15,98,254,0.1) 0%, transparent 70%)', zIndex: 1 }}></div>
+                    <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+                        <span className="mono-label" style={{ color: '#78a9ff' }}>Updates</span>
+                        <h1 style={{ color: 'white', marginBottom: 0, fontSize: '3.5rem', fontWeight: 700 }}>Division News</h1>
                     </div>
                 </div>
                 <div className="container list-page-content">
@@ -83,12 +86,14 @@ const News = () => {
 
     return (
         <div className="list-page">
-            <div className="list-page-header">
-                <div className="container">
-                    <span className="mono-label">Updates</span>
-                    <h1>Division News</h1>
+            <div style={{ backgroundColor: '#020617', padding: '10rem 0 8rem', textAlign: 'center', borderBottom: '1px solid #1e293b', position: 'relative', overflow: 'hidden', color: 'white' }}>
+                <DataTerrainBackground />
+                <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, rgba(15,98,254,0.1) 0%, transparent 70%)', zIndex: 1 }}></div>
+                <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+                    <span className="mono-label" style={{ color: '#78a9ff' }}>Updates</span>
+                    <h1 style={{ color: 'white', marginBottom: 0, fontSize: '3.5rem', fontWeight: 700 }}>Division News</h1>
                     {q && (
-                        <p style={{ marginTop: '0.5rem', fontSize: 'var(--font-size-body-compact)', color: 'var(--text-secondary)' }}>
+                        <p style={{ marginTop: '0.5rem', fontSize: 'var(--font-size-body-compact)', color: '#94a3b8' }}>
                             {news.length} result{news.length !== 1 ? 's' : ''} for "{q}"
                         </p>
                     )}

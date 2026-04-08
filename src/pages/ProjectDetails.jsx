@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle, Wrench as Tool, Target, Image as ImageIcon } from 'lucide-react';
+import DataTerrainBackground from '../components/DataTerrainBackground';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
@@ -120,19 +121,21 @@ const ProjectDetails = () => {
 
     return (
         <div style={{ paddingBottom: '6rem' }}>
-            <div style={{ backgroundColor: 'var(--ibm-gray-10)', borderBottom: '1px solid var(--ibm-gray-20)', padding: '6rem 0 4rem' }}>
-                <div className="container">
-                    <Link to="/projects" className="mono-label" style={{ color: 'var(--ibm-blue)', textDecoration: 'none', display: 'inline-block', marginBottom: '2rem' }}>
+            <div style={{ backgroundColor: '#020617', borderBottom: '1px solid #1e293b', padding: '10rem 0 6rem', position: 'relative', overflow: 'hidden', color: 'white' }}>
+                <DataTerrainBackground />
+                <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 20% 50%, rgba(15,98,254,0.1) 0%, transparent 50%)', zIndex: 1 }}></div>
+                <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+                    <Link to="/projects" className="mono-label" style={{ color: '#78a9ff', textDecoration: 'none', display: 'inline-block', marginBottom: '2rem' }}>
                         &larr; Back to Portfolio
                     </Link>
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-                        <span className="mono-label" style={{ backgroundColor: 'white', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 600, border: '1px solid var(--ibm-gray-20)', marginBottom: '1.5rem', display: 'inline-block' }}>
+                        <span className="mono-label" style={{ backgroundColor: 'rgba(255,255,255,0.05)', color: 'white', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 600, border: '1px solid rgba(255,255,255,0.2)', marginBottom: '1.5rem', display: 'inline-block' }}>
                             {getStatus(project)}
                         </span>
-                        <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', lineHeight: 1.1, marginBottom: '2rem', letterSpacing: '-0.02em' }}>
+                        <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', lineHeight: 1.1, marginBottom: '2rem', letterSpacing: '-0.02em', color: 'white' }}>
                             {project.title}
                         </h1>
-                        <p style={{ fontSize: '1.25rem', color: 'var(--ibm-gray-70)', maxWidth: '800px', lineHeight: 1.6 }}>
+                        <p style={{ fontSize: '1.25rem', color: '#94a3b8', maxWidth: '800px', lineHeight: 1.6 }}>
                             {project.short_description}
                         </p>
                     </motion.div>

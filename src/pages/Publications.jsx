@@ -37,10 +37,32 @@ const Publications = () => {
                 if (!res.ok) throw new Error('Failed to load publications');
                 const data = await res.json();
                 const results = data.results ?? data;
-                setPublications(Array.isArray(results) ? results : []);
+                const fetchedPubs = Array.isArray(results) ? results : [];
+                
+                // Add a mock "Made" publication for demonstration
+                const mockPub = {
+                    id: 'featured-2026',
+                    title: 'Natural Disaster Risk Assessment and Insurance Loss Prediction in the United States',
+                    authors: 'Procentric Research Team',
+                    year: '2026',
+                    venue: 'Technical Report',
+                    abstract: 'This study explores the application of predictive analytics in assessing natural disaster risks across the United States...',
+                    url: '/papers/disaster-risk-assessment-2026.pdf'
+                };
+                
+                setPublications([mockPub, ...fetchedPubs]);
             } catch (err) {
                 console.warn(err);
-                setPublications([]);
+                // Fallback to mock data if API fails
+                setPublications([{
+                    id: 'featured-2026',
+                    title: 'Natural Disaster Risk Assessment and Insurance Loss Prediction in the United States',
+                    authors: 'Procentric Research Team',
+                    year: '2026',
+                    venue: 'Technical Report',
+                    abstract: 'This study explores the application of predictive analytics in assessing natural disaster risks across the United States...',
+                    url: '/papers/disaster-risk-assessment-2026.pdf'
+                }]);
             } finally {
                 setLoading(false);
             }
@@ -71,7 +93,7 @@ const Publications = () => {
                         }}>
                             <BookOpen size={16} /> Scholarly Output
                         </span>
-                        <h1 style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontWeight: 800, marginBottom: '1.5rem', lineHeight: 1.1, letterSpacing: '-0.02em' }}>
+                        <h1 style={{ color: '#94a3b8', fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontWeight: 800, marginBottom: '1.5rem', lineHeight: 1.1, letterSpacing: '-0.02em' }}>
                             Publications & <span style={{ color: '#94a3b8' }}>Research Papers</span>
                         </h1>
                         <p style={{ fontSize: '1.25rem', color: '#94a3b8', maxWidth: '800px', lineHeight: 1.6 }}>
@@ -85,39 +107,159 @@ const Publications = () => {
                 <motion.div variants={staggerContainer} initial="hidden" animate="show">
 
                     {/* 2. MAIN FEATURED PAPER */}
-                    <motion.div variants={fadeUp} style={{ background: 'white', borderRadius: '24px', padding: '3rem', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.1)', border: '1px solid #e2e8f0', marginBottom: '4rem' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem', color: '#b45309', fontWeight: 700, fontSize: '0.95rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
-                            <FileText size={20} /> Featured Research Paper
-                        </div>
-                        <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', fontWeight: 800, color: '#0f172a', marginBottom: '1.5rem', lineHeight: 1.2 }}>
-                            Natural Disaster Risk Assessment and Insurance Loss Prediction in the United States
-                        </h2>
-                        <p style={{ fontSize: '1.2rem', color: '#475569', lineHeight: 1.7, marginBottom: '2rem' }}>
-                            This research paper presents a comprehensive analysis of natural disasters across the United States using historical FEMA data and machine learning models to predict occurrence, severity, and financial impact on the insurance sector.
-                        </p>
+                    <motion.div 
+                        variants={fadeUp} 
+                        style={{ 
+                            background: 'white', 
+                            borderRadius: '32px', 
+                            padding: '4rem', 
+                            boxShadow: '0 40px 100px -20px rgba(0, 0, 0, 0.08)', 
+                            border: '1px solid #f1f5f9', 
+                            marginBottom: '6rem',
+                            position: 'relative',
+                            overflow: 'hidden'
+                        }}
+                    >
+                        {/* Decorative background element */}
+                        <div style={{ position: 'absolute', top: '-100px', right: '-100px', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(37, 99, 235, 0.03) 0%, transparent 70%)', borderRadius: '50%' }} />
 
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', marginBottom: '3rem', padding: '1.5rem', background: '#f8fafc', borderRadius: '16px', border: '1px solid #f1f5f9' }}>
-                            <div>
-                                <div style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600, textTransform: 'uppercase', marginBottom: '0.25rem' }}>Year</div>
-                                <div style={{ fontSize: '1.1rem', color: '#0f172a', fontWeight: 700 }}>2026</div>
-                            </div>
-                            <div>
-                                <div style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600, textTransform: 'uppercase', marginBottom: '0.25rem' }}>Author</div>
-                                <div style={{ fontSize: '1.1rem', color: '#0f172a', fontWeight: 700 }}>Procentric Research Team</div>
-                            </div>
-                            <div>
-                                <div style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600, textTransform: 'uppercase', marginBottom: '0.25rem' }}>Type</div>
-                                <div style={{ fontSize: '1.1rem', color: '#0f172a', fontWeight: 700 }}>Research Paper / Technical Report</div>
-                            </div>
-                        </div>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4rem', alignItems: 'flex-start' }}>
+                            <div style={{ flex: '1 1 500px' }}>
+                                <div style={{ 
+                                    display: 'inline-flex', 
+                                    alignItems: 'center', 
+                                    gap: '0.6rem', 
+                                    marginBottom: '2rem', 
+                                    color: '#2563eb', 
+                                    fontWeight: 700, 
+                                    fontSize: '0.85rem', 
+                                    textTransform: 'uppercase', 
+                                    letterSpacing: '2px',
+                                    backgroundColor: 'rgba(37, 99, 235, 0.05)',
+                                    padding: '0.5rem 1.2rem',
+                                    borderRadius: '100px'
+                                }}>
+                                    <FileText size={18} /> Featured Research Paper
+                                </div>
+                                
+                                <h2 style={{ 
+                                    fontSize: 'clamp(2rem, 5vw, 3rem)', 
+                                    fontWeight: 800, 
+                                    color: '#0f172a', 
+                                    marginBottom: '2rem', 
+                                    lineHeight: 1.1,
+                                    letterSpacing: '-0.03em'
+                                }}>
+                                    Natural Disaster Risk Assessment and <span style={{ color: '#2563eb' }}>Insurance Loss Prediction</span> in the United States
+                                </h2>
 
-                        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                            <button style={{ background: '#2563eb', color: 'white', border: 'none', padding: '0.8rem 1.8rem', borderRadius: '12px', fontWeight: 600, fontSize: '1.05rem', display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', transition: 'background 0.2s' }}>
-                                <BookOpen size={20} /> View Paper
-                            </button>
-                            <button style={{ background: 'white', color: '#0f172a', border: '2px solid #e2e8f0', padding: '0.8rem 1.8rem', borderRadius: '12px', fontWeight: 600, fontSize: '1.05rem', display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', transition: 'border-color 0.2s' }}>
-                                <Download size={20} /> Download PDF
-                            </button>
+                                <p style={{ 
+                                    fontSize: '1.25rem', 
+                                    color: '#475569', 
+                                    lineHeight: 1.8, 
+                                    marginBottom: '3rem',
+                                    fontWeight: 400
+                                }}>
+                                    This study presents a multi-layered predictive framework focused on quantifying catastrophic risk vectors and their downstream financial impacts on regional insurance liquidity pools.
+                                </p>
+
+                                <div style={{ 
+                                    display: 'grid', 
+                                    gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', 
+                                    gap: '2.5rem', 
+                                    marginBottom: '3.5rem',
+                                    borderTop: '1px solid #f1f5f9',
+                                    paddingTop: '2.5rem'
+                                }}>
+                                    {[
+                                        { label: 'Publication Year', val: '2026' },
+                                        { label: 'Primary Author', val: 'Procentric Team' },
+                                        { label: 'Classification', val: 'Technical Report' }
+                                    ].map((item, i) => (
+                                        <div key={i}>
+                                            <div style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>{item.label}</div>
+                                            <div style={{ fontSize: '1.1rem', color: '#0f172a', fontWeight: 700 }}>{item.val}</div>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div style={{ display: 'flex', gap: '1.2rem', flexWrap: 'wrap' }}>
+                                    <Link to="/publications/featured-2026" style={{ textDecoration: 'none' }}>
+                                        <button style={{ 
+                                            background: '#0f172a', 
+                                            color: 'white', 
+                                            border: 'none', 
+                                            padding: '1.2rem 2.4rem', 
+                                            borderRadius: '16px', 
+                                            fontWeight: 600, 
+                                            fontSize: '1.1rem', 
+                                            display: 'flex', 
+                                            alignItems: 'center', 
+                                            gap: '0.8rem', 
+                                            cursor: 'pointer', 
+                                            transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                                            boxShadow: '0 10px 20px -10px rgba(15, 23, 42, 0.3)'
+                                        }}>
+                                            Read Full Thesis <ArrowRight size={20} />
+                                        </button>
+                                    </Link>
+                                    <a href="/papers/disaster-risk-assessment-2026.pdf" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                                        <button style={{ 
+                                            background: 'white', 
+                                            color: '#0f172a', 
+                                            border: '1px solid #e2e8f0', 
+                                            padding: '1.2rem 2.4rem', 
+                                            borderRadius: '16px', 
+                                            fontWeight: 600, 
+                                            fontSize: '1.1rem', 
+                                            display: 'flex', 
+                                            alignItems: 'center', 
+                                            gap: '0.8rem', 
+                                            cursor: 'pointer', 
+                                            transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+                                        }}>
+                                            <Download size={20} /> Archive PDF
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            {/* Visual Asset for the Featured Paper */}
+                            <div style={{ 
+                                flex: '1 1 300px', 
+                                display: 'flex', 
+                                justifyContent: 'center', 
+                                alignItems: 'center',
+                                background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)',
+                                borderRadius: '24px',
+                                minHeight: '400px',
+                                border: '1px solid #f1f5f9',
+                                position: 'relative'
+                            }}>
+                                <div style={{ 
+                                    width: '180px', 
+                                    height: '240px', 
+                                    background: 'white', 
+                                    boxShadow: '0 30px 60px -15px rgba(0,0,0,0.15)',
+                                    borderRadius: '8px',
+                                    border: '1px solid #e2e8f0',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    padding: '1.5rem',
+                                    position: 'relative',
+                                    zIndex: 2,
+                                    transform: 'rotate(-4deg)'
+                                }}>
+                                    <div style={{ width: '40px', height: '4px', background: '#2563eb', marginBottom: '1rem', borderRadius: '2px' }} />
+                                    <div style={{ fontSize: '0.6rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', color: '#94a3b8', marginBottom: '0.5rem' }}>Technical Pub 2026</div>
+                                    <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#0f172a', lineHeight: 1.3, marginBottom: '2rem' }}>Natural Disaster Risk Assessment Models</div>
+                                    <div style={{ marginTop: 'auto', display: 'flex', gap: '4px' }}>
+                                        {[1,2,3,4,5].map(i => <div key={i} style={{ flex: 1, height: '2px', background: '#f1f5f9' }} />)}
+                                    </div>
+                                </div>
+                                {/* Stack effect */}
+                                <div style={{ position: 'absolute', width: '180px', height: '240px', background: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0', transform: 'rotate(2deg)', zIndex: 1 }} />
+                            </div>
                         </div>
                     </motion.div>
 
@@ -277,24 +419,78 @@ const Publications = () => {
                         </p>
                     </motion.div>
 
-                    {/* DYNAMIC PUBLICATIONS LIST (PRESERVED) */}
-                    <motion.div variants={fadeUp} style={{ marginTop: '5rem', borderTop: '1px solid #e2e8f0', paddingTop: '4rem' }}>
-                        <h3 style={{ fontSize: '2rem', fontWeight: 800, color: '#0f172a', marginBottom: '2rem' }}>All Publications</h3>
-                        {loading && <p>Loading publications...</p>}
-                        {!loading && publications.length === 0 && <p style={{ color: '#64748b' }}>No additional publications found in database.</p>}
+                     {/* DYNAMIC PUBLICATIONS LIST (PRESERVED) */}
+                     <motion.div variants={fadeUp} style={{ marginTop: '5rem', borderTop: '1px solid #f1f5f9', paddingTop: '6rem', paddingBottom: '4rem' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '4rem' }}>
+                            <div>
+                                <h3 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.5rem', letterSpacing: '-0.02em' }}>Scholarly Catalog</h3>
+                                <p style={{ color: '#64748b', fontSize: '1.1rem' }}>Access our complete historical repository of research.</p>
+                            </div>
+                            <div style={{ fontSize: '0.9rem', color: '#94a3b8', fontWeight: 600 }}>{publications.length} TOTAL ENTRIES</div>
+                        </div>
+
+                        {loading && <div style={{ padding: '4rem', textAlign: 'center', color: '#94a3b8' }}>Analyzing repository...</div>}
+                        
+                        {!loading && publications.length === 0 && (
+                            <div style={{ padding: '6rem', textAlign: 'center', background: '#f8fafc', borderRadius: '24px', border: '1px dashed #e2e8f0' }}>
+                                <p style={{ color: '#64748b', fontSize: '1.1rem', margin: 0 }}>No additional publications found in metadata.</p>
+                            </div>
+                        )}
+
                         {!loading && publications.length > 0 && (
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
                                 {publications.map((pub) => (
-                                    <Link key={pub.id} to={`/publications/${pub.id}`} style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '1.5rem', background: 'white', borderRadius: '16px', border: '1px solid #e2e8f0', textDecoration: 'none', color: 'inherit', transition: 'box-shadow 0.2s' }}>
-                                        <div style={{ background: '#f1f5f9', color: '#475569', padding: '0.5rem 1rem', borderRadius: '8px', fontWeight: 600, fontSize: '0.9rem' }}>
+                                    <Link 
+                                        key={pub.id} 
+                                        to={`/publications/${pub.id}`} 
+                                        className="premium-pub-row"
+                                        style={{ 
+                                            display: 'flex', 
+                                            alignItems: 'center', 
+                                            gap: '2.5rem', 
+                                            padding: '2rem 2.5rem', 
+                                            background: 'white', 
+                                            borderRadius: '24px', 
+                                            border: '1px solid #f1f5f9', 
+                                            textDecoration: 'none', 
+                                            color: 'inherit', 
+                                            transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                                            boxShadow: '0 4px 6px rgba(0,0,0,0.01)'
+                                        }}
+                                    >
+                                        <div style={{ 
+                                            background: '#f8fafc', 
+                                            color: '#0f172a', 
+                                            padding: '0.6rem 1.2rem', 
+                                            borderRadius: '12px', 
+                                            fontWeight: 800, 
+                                            fontSize: '0.95rem',
+                                            border: '1px solid #f1f5f9',
+                                            minWidth: '80px',
+                                            textAlign: 'center'
+                                        }}>
                                             {pub.year || '—'}
                                         </div>
                                         <div style={{ flex: 1 }}>
-                                            <h4 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.25rem' }}>{pub.title}</h4>
-                                            <p style={{ color: '#64748b', fontSize: '0.95rem', margin: 0 }}>{pub.authors}</p>
+                                            <h4 style={{ fontSize: '1.3rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.5rem', letterSpacing: '-0.01em' }}>{pub.title}</h4>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', color: '#64748b', fontSize: '0.95rem' }}>
+                                                <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}><BookOpen size={14} /> {pub.authors}</span>
+                                                {pub.venue && <span style={{ color: '#cbd5e1' }}>|</span>}
+                                                {pub.venue && <span style={{ fontWeight: 600, color: '#2563eb' }}>{pub.venue}</span>}
+                                            </div>
                                         </div>
-                                        <div style={{ color: '#2563eb', fontWeight: 500, fontSize: '0.9rem', fontStyle: 'italic' }}>
-                                            {pub.venue || 'View Details'} &rarr;
+                                        <div style={{ 
+                                            width: '48px', 
+                                            height: '48px', 
+                                            borderRadius: '50%', 
+                                            background: '#f8fafc', 
+                                            display: 'flex', 
+                                            alignItems: 'center', 
+                                            justifyContent: 'center',
+                                            color: '#cbd5e1',
+                                            transition: 'all 0.3s'
+                                        }} className="pub-arrow-hint">
+                                            <ArrowRight size={20} />
                                         </div>
                                     </Link>
                                 ))}

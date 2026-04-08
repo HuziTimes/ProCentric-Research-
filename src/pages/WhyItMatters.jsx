@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Target, ShieldCheck, TrendingDown, Activity } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import DataTerrainBackground from '../components/DataTerrainBackground';
 
 const SAVINGS_DATA = Array.from({ length: 15 }, (_, i) => ({
     year: 2010 + i,
@@ -16,10 +17,12 @@ const WhyItMatters = () => {
 
     return (
         <div style={{ backgroundColor: '#f9fafb', minHeight: '100vh', paddingBottom: '6rem' }}>
-            <div style={{ backgroundColor: '#ffffff', padding: '6rem 1rem 4rem 1rem', textAlign: 'center', borderBottom: '1px solid #eaeaea' }}>
-                <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-                    <h1 style={{ fontSize: '3rem', fontWeight: 800, color: '#111827', marginBottom: '1rem' }}>Why This Matters</h1>
-                    <p style={{ fontSize: '1.25rem', color: '#4b5563', lineHeight: 1.6 }}>
+            <div style={{ backgroundColor: '#020617', padding: '10rem 1rem 8rem 1rem', textAlign: 'center', borderBottom: '1px solid #1e293b', position: 'relative', overflow: 'hidden' }}>
+                <DataTerrainBackground />
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at center, rgba(15,98,254,0.15) 0%, transparent 70%)', zIndex: 1 }}></div>
+                <div style={{ maxWidth: '800px', margin: '0 auto', position: 'relative', zIndex: 10 }}>
+                    <h1 style={{ fontSize: '3.5rem', fontWeight: 800, color: 'white', marginBottom: '1rem' }}>Why This Matters</h1>
+                    <p style={{ fontSize: '1.25rem', color: '#94a3b8', lineHeight: 1.6 }}>
                         Understanding the existential importance of shifting the United States insurance model from reactive compensation to proactive predictive management.
                     </p>
                 </div>

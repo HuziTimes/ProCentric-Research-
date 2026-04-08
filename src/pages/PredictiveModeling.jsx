@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { ScatterChart, Scatter, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ZAxis } from 'recharts';
 import { Target, Activity, Shield } from 'lucide-react';
+import DataTerrainBackground from '../components/DataTerrainBackground';
 
 const HEATMAP_DATA = Array.from({ length: 150 }, () => ({
     x: Math.floor(Math.random() * 100),
@@ -26,10 +27,12 @@ const PredictiveModeling = () => {
 
     return (
         <div style={{ backgroundColor: '#f9fafb', minHeight: '100vh', paddingBottom: '6rem' }}>
-            <div style={{ backgroundColor: '#ffffff', padding: '6rem 1rem 4rem 1rem', textAlign: 'center', borderBottom: '1px solid #eaeaea' }}>
-                <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-                    <h1 style={{ fontSize: '3rem', fontWeight: 800, color: '#111827', marginBottom: '1rem' }}>Predictive Modeling</h1>
-                    <p style={{ fontSize: '1.25rem', color: '#4b5563', lineHeight: 1.6 }}>
+            <div style={{ backgroundColor: '#020617', padding: '10rem 1rem 8rem 1rem', textAlign: 'center', borderBottom: '1px solid #1e293b', position: 'relative', overflow: 'hidden' }}>
+                <DataTerrainBackground />
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at center, rgba(15,98,254,0.15) 0%, transparent 70%)', zIndex: 1 }}></div>
+                <div style={{ maxWidth: '800px', margin: '0 auto', position: 'relative', zIndex: 10 }}>
+                    <h1 style={{ fontSize: '3.5rem', fontWeight: 800, color: 'white', marginBottom: '1rem' }}>Predictive Modeling</h1>
+                    <p style={{ fontSize: '1.25rem', color: '#94a3b8', lineHeight: 1.6 }}>
                         Leveraging advanced machine learning architectures to output precise probabilities for occurrence, severity vectors, and insurance claim volume projections.
                     </p>
                 </div>

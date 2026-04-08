@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import DataTerrainBackground from '../components/DataTerrainBackground';
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 const Search = () => {
@@ -57,15 +58,17 @@ const Search = () => {
     if (!q.trim()) {
         return (
             <div className="list-page">
-                <div className="list-page-header">
-                    <div className="container">
-                        <span className="mono-label">Search</span>
-                        <h1>Search</h1>
-                        <p style={{ marginTop: '0.5rem', color: 'var(--text-secondary)' }}>
-                            Enter a term in the search bar above to find research areas, projects, news, and publications.
-                        </p>
-                    </div>
+            <div style={{ backgroundColor: '#020617', padding: '10rem 0 8rem', textAlign: 'center', borderBottom: '1px solid #1e293b', position: 'relative', overflow: 'hidden', color: 'white' }}>
+                <DataTerrainBackground />
+                <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, rgba(15,98,254,0.1) 0%, transparent 70%)', zIndex: 1 }}></div>
+                <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+                    <span className="mono-label" style={{ color: '#78a9ff' }}>Search</span>
+                    <h1 style={{ color: 'white', marginBottom: '1rem', fontSize: '3.5rem', fontWeight: 700 }}>Search</h1>
+                    <p style={{ marginTop: '0.5rem', color: '#94a3b8' }}>
+                        Enter a term in the search bar above to find research areas, projects, news, and publications.
+                    </p>
                 </div>
+            </div>
             </div>
         );
     }
@@ -73,12 +76,14 @@ const Search = () => {
     if (loading) {
         return (
             <div className="list-page">
-                <div className="list-page-header">
-                    <div className="container">
-                        <span className="mono-label">Search</span>
-                        <h1>Search results for "{q}"</h1>
-                    </div>
+            <div style={{ backgroundColor: '#020617', padding: '10rem 0 8rem', textAlign: 'center', borderBottom: '1px solid #1e293b', position: 'relative', overflow: 'hidden', color: 'white' }}>
+                <DataTerrainBackground />
+                <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, rgba(15,98,254,0.1) 0%, transparent 70%)', zIndex: 1 }}></div>
+                <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+                    <span className="mono-label" style={{ color: '#78a9ff' }}>Search</span>
+                    <h1 style={{ color: 'white', marginBottom: 0, fontSize: '3.5rem', fontWeight: 700 }}>Search results for "{q}"</h1>
                 </div>
+            </div>
                 <div className="container list-page-content">
                     <div className="list-loading">Searching…</div>
                 </div>
@@ -124,11 +129,13 @@ const Search = () => {
 
     return (
         <div className="list-page">
-            <div className="list-page-header">
-                <div className="container">
-                    <span className="mono-label">Search</span>
-                    <h1>Search results for "{q}"</h1>
-                    <p style={{ marginTop: '0.5rem', fontSize: 'var(--font-size-body-compact)', color: 'var(--text-secondary)' }}>
+            <div style={{ backgroundColor: '#020617', padding: '10rem 0 8rem', textAlign: 'center', borderBottom: '1px solid #1e293b', position: 'relative', overflow: 'hidden', color: 'white' }}>
+                <DataTerrainBackground />
+                <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, rgba(15,98,254,0.1) 0%, transparent 70%)', zIndex: 1 }}></div>
+                <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+                    <span className="mono-label" style={{ color: '#78a9ff' }}>Search</span>
+                    <h1 style={{ color: 'white', marginBottom: 0, fontSize: '3.5rem', fontWeight: 700 }}>Search results for "{q}"</h1>
+                    <p style={{ marginTop: '0.5rem', fontSize: 'var(--font-size-body-compact)', color: '#94a3b8' }}>
                         {total} result{total !== 1 ? 's' : ''} found
                     </p>
                 </div>

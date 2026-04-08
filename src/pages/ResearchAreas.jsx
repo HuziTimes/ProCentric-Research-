@@ -4,6 +4,7 @@ import {
     CloudLightning, BrainCircuit, ShieldAlert, Map,
     DollarSign, Bell, Database, Briefcase, Network, ArrowRight
 } from 'lucide-react';
+import DataTerrainBackground from '../components/DataTerrainBackground';
 
 const ResearchAreas = () => {
     useEffect(() => {
@@ -80,11 +81,12 @@ const ResearchAreas = () => {
         <div style={{ backgroundColor: '#f9fafb', minHeight: '100vh', paddingBottom: '6rem' }}>
 
             {/* 1. Page Header */}
-            <div style={{ backgroundColor: '#ffffff', padding: '6rem 1rem', textAlign: 'center', borderBottom: '1px solid #eaeaea', position: 'relative', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundImage: 'linear-gradient(45deg, #f9fafb 25%, transparent 25%, transparent 75%, #f9fafb 75%, #f9fafb), linear-gradient(45deg, #f9fafb 25%, transparent 25%, transparent 75%, #f9fafb 75%, #f9fafb)', backgroundSize: '60px 60px', backgroundPosition: '0 0, 30px 30px', opacity: 0.5 }}></div>
-                <div style={{ maxWidth: '900px', margin: '0 auto', position: 'relative' }}>
-                    <h1 style={{ fontSize: '3.5rem', fontWeight: 800, color: '#111827', marginBottom: '1.5rem', letterSpacing: '-0.02em' }}>Our Research Areas</h1>
-                    <p style={{ fontSize: '1.25rem', color: '#4b5563', lineHeight: 1.6 }}>
+            <div style={{ backgroundColor: '#020617', color: 'white', padding: '10rem 1rem 8rem', textAlign: 'center', borderBottom: '1px solid #1e293b', position: 'relative', overflow: 'hidden' }}>
+                <DataTerrainBackground />
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at center, rgba(15,98,254,0.15) 0%, transparent 70%)', zIndex: 1 }}></div>
+                <div style={{ maxWidth: '900px', margin: '0 auto', position: 'relative', zIndex: 10 }}>
+                    <h1 style={{ fontSize: '3.5rem', fontWeight: 800, color: 'white', marginBottom: '1.5rem', letterSpacing: '-0.02em' }}>Our Research Areas</h1>
+                    <p style={{ fontSize: '1.25rem', color: '#94a3b8', lineHeight: 1.6 }}>
                         Focused research domains driving innovation in natural disaster risk assessment and insurance intelligence across the United States.
                     </p>
                 </div>

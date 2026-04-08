@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Database, TrendingUp, Layers, CheckCircle } from 'lucide-react';
 import DataAttribution from '../components/DataAttribution';
+import DataTerrainBackground from '../components/DataTerrainBackground';
 
 const Methodology = () => {
     useEffect(() => {
@@ -9,10 +10,11 @@ const Methodology = () => {
 
     return (
         <div style={{ backgroundColor: '#f9fafb', minHeight: '100vh', paddingBottom: '6rem' }}>
-            <div style={{ backgroundColor: '#111827', padding: '7rem 1rem 5rem 1rem', textAlign: 'center', color: 'white' }}>
-                <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+            <div style={{ backgroundColor: '#020617', padding: '10rem 1rem 8rem', textAlign: 'center', color: 'white', position: 'relative', overflow: 'hidden' }}>
+                <DataTerrainBackground />
+                <div style={{ maxWidth: '800px', margin: '0 auto', position: 'relative', zIndex: 10 }}>
                     <h1 style={{ fontSize: '3rem', fontWeight: 800, marginBottom: '1rem' }}>Dataset & Methodology</h1>
-                    <p style={{ fontSize: '1.25rem', color: '#9ca3af', lineHeight: 1.6 }}>
+                    <p style={{ fontSize: '1.25rem', color: '#94a3b8', lineHeight: 1.6 }}>
                         An open exploration of our data pipeline, encompassing sourcing, preprocessing heuristics, feature engineering, and ensemble model training.
                     </p>
                 </div>

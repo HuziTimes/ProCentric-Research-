@@ -10,6 +10,7 @@ import {
     DollarSign, Zap, BarChart2, PieChart as PieChartIcon
 } from 'lucide-react';
 import DataAttribution from '../components/DataAttribution';
+import DataTerrainBackground from '../components/DataTerrainBackground';
 
 /* --- MOCK DATA --- */
 
@@ -149,15 +150,17 @@ const Dashboard = () => {
         <div style={{ backgroundColor: theme.bg, color: theme.text, minHeight: '100vh', transition: 'background-color 0.3s ease, color 0.3s ease', paddingBottom: '6rem' }}>
 
             {/* Header / Top Intro */}
-            <div style={{ borderBottom: `1px solid ${theme.cardBorder}`, backgroundColor: '#ffffff', paddingTop: '6rem', paddingBottom: '2rem' }}>
-                <div className="container">
+            <div style={{ borderBottom: `1px solid #1e293b`, backgroundColor: '#020617', paddingTop: '8rem', paddingBottom: '4rem', position: 'relative', overflow: 'hidden', color: 'white' }}>
+                <DataTerrainBackground />
+                <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 20% 50%, rgba(15,98,254,0.1) 0%, transparent 50%)', zIndex: 1 }}></div>
+                <div className="container" style={{ position: 'relative', zIndex: 10 }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '1rem' }}>
                         <div>
-                            <span className="mono-label" style={{ color: theme.blue, backgroundColor: 'rgba(15,98,254,0.1)', padding: '0.4rem 0.8rem', borderRadius: '4px', display: 'inline-block', marginBottom: '1rem' }}>
+                            <span className="mono-label" style={{ color: '#78a9ff', backgroundColor: 'rgba(15,98,254,0.1)', padding: '0.4rem 0.8rem', borderRadius: '4px', display: 'inline-block', marginBottom: '1rem' }}>
                                 Real-time AI-powered disaster intelligence dashboard for the United States insurance sector.
                             </span>
-                            <h1 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', margin: 0, fontWeight: 700 }}>Risk Intelligence Center</h1>
-                            <p style={{ color: theme.textMuted, fontSize: '1.1rem', marginTop: '0.5rem', maxWidth: '800px' }}>
+                            <h1 style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', margin: 0, fontWeight: 700, color: 'white' }}>Risk Intelligence Center</h1>
+                            <p style={{ color: '#94a3b8', fontSize: '1.1rem', marginTop: '0.5rem', maxWidth: '800px' }}>
                                 Over 7,000+ unique major disaster events analyzed across the United States with billions in projected insurance losses.
                             </p>
                         </div>
