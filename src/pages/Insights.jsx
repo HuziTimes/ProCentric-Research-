@@ -4,6 +4,7 @@ import {
     Wind, Droplets, Flame, Zap, Briefcase, Target, Map
 } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import DataAttribution from '../components/DataAttribution';
 
 const TREND_DATA = Array.from({ length: 20 }, (_, i) => ({
     year: 2005 + i,
@@ -69,8 +70,12 @@ const Insights = () => {
                             Over the past decades, natural disasters in the United States have increased in both frequency and intensity, significantly driven by massive climate variability and broad urban expansion into traditionally unpopulated zones.
                         </p>
 
-                        <div style={{ padding: '1rem', backgroundColor: '#fff5f5', borderLeft: '4px solid #fa4d56', color: '#fa4d56', fontWeight: 700, fontSize: '1.15rem', marginBottom: '2rem' }}>
-                            Highlight: 240% increase in severe insured disaster events over the last 20 years.
+                        <div style={{ padding: '1.5rem', backgroundColor: '#fff5f5', borderLeft: '4px solid #fa4d56', color: '#fa4d56' }}>
+                            <div style={{ fontWeight: 700, fontSize: '1.25rem', marginBottom: '0.25rem' }}>240% Growth in Risk Exposure</div>
+                            <div style={{ fontSize: '1rem', fontWeight: 500, lineHeight: 1.5 }}>
+                                Documented increase in severe insured disaster events over the last 20 years. 
+                                <span style={{ opacity: 0.8, fontSize: '0.9rem', display: 'block', marginTop: '0.5rem' }}>Source: Swiss Re Sigma & NOAA Billion-Dollar Disaster Reports</span>
+                            </div>
                         </div>
 
                         <div style={{ width: '100%', height: '300px' }}>
@@ -256,6 +261,8 @@ const Insights = () => {
                         “From raw data to real decisions — transforming disaster risk into strategic advantage.”
                     </p>
                 </div>
+
+                <DataAttribution />
 
             </div>
         </div>

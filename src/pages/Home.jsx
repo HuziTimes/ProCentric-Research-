@@ -8,6 +8,7 @@ import {
 import { LineChart, Line, ResponsiveContainer, Tooltip } from 'recharts';
 
 import DataTerrainBackground from '../components/DataTerrainBackground';
+import DataAttribution from '../components/DataAttribution';
 import heroImg from '../assets/images/hero_new.png'; // Will use as fallback if needed
 
 const UNSPLASH_IMAGES = [
@@ -225,6 +226,9 @@ const Home = () => {
                     </motion.div>
                 </div>
             </section>
+
+            {/* 9.5 DATA ATTRIBUTION */}
+            <DataAttribution />
 
             {/* 10. SMALL FOOTER NOTE */}
             <footer style={{ background: '#020617', padding: '2rem 0', borderTop: '1px solid rgba(255,255,255,0.05)', textAlign: 'center' }}>

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Database, TrendingUp, Layers, CheckCircle } from 'lucide-react';
+import DataAttribution from '../components/DataAttribution';
 
 const Methodology = () => {
     useEffect(() => {
@@ -23,7 +24,7 @@ const Methodology = () => {
                     {
                         icon: Database,
                         title: "1. Data Sourcing (FEMA Kaggle Dataset)",
-                        desc: "Our primary historical pipeline integrates the authoritative FEMA Natural Disaster Declarations dataset natively sourced via Kaggle. This encapsulates 50+ years of localized US incident markers across highly variable climactic regions, providing millions of unrefined tabular rows detailing the initial structural and casualty impacts."
+                        desc: "Our primary historical pipeline integrates the authoritative FEMA Natural Disaster Declarations dataset natively sourced via Kaggle. This encapsulates 70+ years of localized US incident markers across highly variable climactic regions, providing millions of unrefined tabular rows detailing the initial structural and casualty impacts."
                     },
                     {
                         icon: Layers,
@@ -51,6 +52,8 @@ const Methodology = () => {
                         </div>
                     </div>
                 ))}
+
+                <DataAttribution />
 
             </div>
         </div>

@@ -9,6 +9,7 @@ import {
     Map as MapIcon, Bell, FileText,
     DollarSign, Zap, BarChart2, PieChart as PieChartIcon
 } from 'lucide-react';
+import DataAttribution from '../components/DataAttribution';
 
 /* --- MOCK DATA --- */
 
@@ -47,7 +48,6 @@ const CLAIMS_FORECAST = Array.from({ length: 5 }, (_, i) => ({
     lowerBound: Math.floor(3500 + (i * 700) + Math.random() * 500)
 }));
 
-// Re-structured for ScatterChart geography
 const MAP_MARKERS = [
     { name: 'California', lon: -120, lat: 37, score: 92, loss: '$4.2B', claim: '12k', color: '#fa4d56', size: 400, risk: "High Risk" },
     { name: 'Texas', lon: -99, lat: 31, score: 88, loss: '$3.8B', claim: '10k', color: '#fa4d56', size: 300, risk: "High Risk" },
@@ -130,7 +130,6 @@ const CustomMapTooltip = ({ active, payload }) => {
 };
 
 const Dashboard = () => {
-
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -159,7 +158,7 @@ const Dashboard = () => {
                             </span>
                             <h1 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', margin: 0, fontWeight: 700 }}>Risk Intelligence Center</h1>
                             <p style={{ color: theme.textMuted, fontSize: '1.1rem', marginTop: '0.5rem', maxWidth: '800px' }}>
-                                Over 12,000+ disaster events analyzed across the United States with billions in projected insurance losses.
+                                Over 7,000+ unique major disaster events analyzed across the United States with billions in projected insurance losses.
                             </p>
                         </div>
                     </div>
@@ -171,7 +170,7 @@ const Dashboard = () => {
                 {/* 1. KPI Cards Row */}
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
                     {[
-                        { title: 'Total Disasters (USA)', value: '12,450+', sub: 'Since 1970', icon: Database, color: '#0f62fe' },
+                        { title: 'Major Disasters (USA)', value: '7,450+', sub: 'Since 1953', icon: Database, color: '#0f62fe' },
                         { title: 'Highest Risk State', value: 'California', sub: 'Critical Wildfire', icon: MapIcon, color: '#fa4d56' },
                         { title: 'Estimated Total Loss', value: '$14.2B', sub: 'Projected 2025', icon: DollarSign, color: '#f1c21b' },
                         { title: 'Avg Claims / Event', value: '4,120', sub: '+12% vs 2023', icon: FileText, color: '#8a3ffc' },
@@ -189,40 +188,33 @@ const Dashboard = () => {
                 </div>
 
                 {/* 2. Map & Insights Row */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr lg:2fr', gap: '2rem' }}>
-                    <div style={{ gridColumn: '1 / -1' }}>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', height: '100%' }}>
-                            {/* Interactive Map via Recharts Scatter */}
-                            <DashboardCard
-                                title="Interactive USA Risk Map"
-                                subtitle="Disaster risk distribution mapped actively by geographical coordinates."
-                                icon={MapIcon}
-                            >
-                                <div style={{ width: '100%', height: '400px', backgroundColor: '#f8f9fa', borderRadius: '12px', border: `1px solid ${theme.cardBorder}`, marginTop: '1rem', padding: '1rem' }}>
-                                    <ResponsiveContainer width="100%" height="100%">
-                                        <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-                                            <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
-                                            <XAxis type="number" dataKey="lon" name="Longitude" unit="°" domain={[-125, -65]} tick={false} axisLine={false} />
-                                            <YAxis type="number" dataKey="lat" name="Latitude" unit="°" domain={[25, 50]} tick={false} axisLine={false} />
-                                            <ZAxis type="number" dataKey="size" range={[50, 600]} name="Loss Volume" />
-                                            <RechartsTooltip cursor={{ strokeDasharray: '3 3' }} content={<CustomMapTooltip />} />
-                                            <Scatter name="Risk Regions" data={MAP_MARKERS}>
-                                                {MAP_MARKERS.map((entry, index) => (
-                                                    <Cell key={`cell-${index}`} fill={entry.color} fillOpacity={0.7} />
-                                                ))}
-                                            </Scatter>
-                                        </ScatterChart>
-                                    </ResponsiveContainer>
-                                </div>
-                            </DashboardCard>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '2rem' }}>
+                    <DashboardCard
+                        title="Interactive USA Risk Map"
+                        subtitle="Disaster risk distribution mapped actively by geographical coordinates."
+                        icon={MapIcon}
+                    >
+                        <div style={{ width: '100%', height: '400px', backgroundColor: '#f8f9fa', borderRadius: '12px', border: `1px solid ${theme.cardBorder}`, marginTop: '1rem', padding: '1rem' }}>
+                            <ResponsiveContainer width="100%" height="100%">
+                                <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+                                    <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+                                    <XAxis type="number" dataKey="lon" name="Longitude" unit="°" domain={[-125, -65]} tick={false} axisLine={false} />
+                                    <YAxis type="number" dataKey="lat" name="Latitude" unit="°" domain={[25, 50]} tick={false} axisLine={false} />
+                                    <ZAxis type="number" dataKey="size" range={[50, 600]} name="Loss Volume" />
+                                    <RechartsTooltip cursor={{ strokeDasharray: '3 3' }} content={<CustomMapTooltip />} />
+                                    <Scatter name="Risk Regions" data={MAP_MARKERS}>
+                                        {MAP_MARKERS.map((entry, index) => (
+                                            <Cell key={`cell-${index}`} fill={entry.color} fillOpacity={0.7} />
+                                        ))}
+                                    </Scatter>
+                                </ScatterChart>
+                            </ResponsiveContainer>
                         </div>
-                    </div>
+                    </DashboardCard>
                 </div>
 
                 {/* 3. Alerts & Insights & Trends */}
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem' }}>
-
-                    {/* Early Warning Alerts */}
                     <DashboardCard title="Early Warning Alerts" subtitle="Real-time alerts generated using predictive analytics." icon={Bell}>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
                             {ALERTS.map(alert => (
@@ -237,7 +229,6 @@ const Dashboard = () => {
                         </div>
                     </DashboardCard>
 
-                    {/* AI Insights Panel */}
                     <DashboardCard title="AI Analyst Insights" subtitle="Automated deductions from Model Data." icon={Zap}>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
                             <div style={{ padding: '1.25rem', borderRadius: '8px', backgroundImage: 'linear-gradient(145deg, #f4f4f4 0%, #e6f0ff 100%)', border: '1px solid #0f62fe33' }}>
@@ -259,8 +250,7 @@ const Dashboard = () => {
                         </div>
                     </DashboardCard>
 
-                    {/* Disaster Trends */}
-                    <DashboardCard title="Disaster Trends" subtitle="Disaster occurrences have shown a strict upward trend highlighting need for risk management." icon={TrendingUp}>
+                    <DashboardCard title="Disaster Trends" subtitle="Disaster occurrences have shown a upward trend." icon={TrendingUp}>
                         <div style={{ width: '100%', height: '300px', marginTop: '1rem' }}>
                             <ResponsiveContainer>
                                 <LineChart data={DISASTER_TRENDS}>
@@ -275,34 +265,31 @@ const Dashboard = () => {
                     </DashboardCard>
                 </div>
 
-                {/* 4. Types, Scores, Premium Recs */}
+                {/* 4. Distribution Row */}
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-
-                    {/* Disaster Type Distribution */}
-                    <DashboardCard title="Disaster Type Distribution" subtitle="Floods and hurricanes contribute to the largest proportion of events." icon={PieChartIcon}>
+                    <DashboardCard title="Disaster Types" subtitle="Distribution of events." icon={PieChartIcon}>
                         <div style={{ width: '100%', height: '280px', marginTop: '1rem' }}>
                             <ResponsiveContainer>
                                 <PieChart>
                                     <Pie data={DISASTER_TYPES} cx="50%" cy="50%" innerRadius={60} outerRadius={90} paddingAngle={5} dataKey="value">
                                         {DISASTER_TYPES.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.color} />)}
                                     </Pie>
-                                    <RechartsTooltip contentStyle={{ backgroundColor: theme.tooltipBg, border: `1px solid ${theme.cardBorder}`, borderRadius: '8px', color: theme.text }} />
-                                    <Legend verticalAlign="bottom" height={36} iconType="circle" />
+                                    <RechartsTooltip />
+                                    <Legend verticalAlign="bottom" height={36} />
                                 </PieChart>
                             </ResponsiveContainer>
                         </div>
                     </DashboardCard>
 
-                    {/* Risk Score Distribution */}
-                    <DashboardCard title="Risk Score Distribution" subtitle="Number of regions classified by danger tier." icon={BarChart2}>
+                    <DashboardCard title="Risk Scores" subtitle="Regions by danger tier." icon={BarChart2}>
                         <div style={{ width: '100%', height: '280px', marginTop: '1rem' }}>
                             <ResponsiveContainer>
-                                <BarChart data={RISK_SCORES} layout="vertical" margin={{ top: 20, right: 30, left: 30, bottom: 0 }}>
+                                <BarChart data={RISK_SCORES} layout="vertical">
                                     <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke={theme.gridLine} />
-                                    <XAxis type="number" stroke={theme.textMuted} axisLine={false} tickLine={false} />
-                                    <YAxis dataKey="name" type="category" width={90} stroke={theme.textMuted} axisLine={false} tickLine={false} />
-                                    <RechartsTooltip cursor={{ fill: 'rgba(0,0,0,0.05)' }} contentStyle={{ backgroundColor: theme.tooltipBg, border: `1px solid ${theme.cardBorder}`, borderRadius: '8px', color: theme.text }} />
-                                    <Bar dataKey="regions" name="Regions" radius={[0, 4, 4, 0]}>
+                                    <XAxis type="number" stroke={theme.textMuted} />
+                                    <YAxis dataKey="name" type="category" stroke={theme.textMuted} />
+                                    <RechartsTooltip />
+                                    <Bar dataKey="regions" radius={[0, 4, 4, 0]}>
                                         {RISK_SCORES.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.color} />)}
                                     </Bar>
                                 </BarChart>
@@ -310,25 +297,22 @@ const Dashboard = () => {
                         </div>
                     </DashboardCard>
 
-                    {/* Premium Recommendations */}
-                    <DashboardCard title="Premium Adjustments" subtitle="Recommended adjustments based on local risk scores." icon={DollarSign}>
-                        <div style={{ marginTop: '1.5rem', overflowX: 'auto' }}>
-                            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.95rem' }}>
+                    <DashboardCard title="Premium Adjustments" subtitle="Rec. adjustments based on risk." icon={DollarSign}>
+                        <div style={{ marginTop: '1rem', overflowX: 'auto' }}>
+                            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
                                 <thead>
                                     <tr style={{ borderBottom: `1px solid ${theme.cardBorder}`, color: theme.textMuted }}>
-                                        <th style={{ paddingBottom: '0.75rem', fontWeight: 600 }}>State</th>
-                                        <th style={{ paddingBottom: '0.75rem', fontWeight: 600 }}>Risk Level</th>
-                                        <th style={{ paddingBottom: '0.75rem', fontWeight: 600 }}>Rec. Premium</th>
+                                        <th style={{ padding: '0.5rem', textAlign: 'left' }}>State</th>
+                                        <th style={{ padding: '0.5rem', textAlign: 'left' }}>Risk</th>
+                                        <th style={{ padding: '0.5rem', textAlign: 'left' }}>Adjust</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {PREMIUMS.map((p, i) => (
-                                        <tr key={i} style={{ borderBottom: i !== PREMIUMS.length - 1 ? `1px solid ${theme.cardBorder}` : 'none' }}>
-                                            <td style={{ padding: '1rem 0', fontWeight: 500 }}>{p.state}</td>
-                                            <td style={{ padding: '1rem 0' }}>
-                                                <span style={{ backgroundColor: `${p.color}22`, color: p.color, padding: '0.2rem 0.6rem', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 600 }}>{p.risk}</span>
-                                            </td>
-                                            <td style={{ padding: '1rem 0', fontWeight: 600, color: p.adjust.startsWith('+') ? '#fa4d56' : '#198038' }}>{p.adjust}</td>
+                                        <tr key={i} style={{ borderBottom: `1px solid ${theme.cardBorder}` }}>
+                                            <td style={{ padding: '0.5rem' }}>{p.state}</td>
+                                            <td style={{ padding: '0.5rem' }}><span style={{ color: p.color, fontWeight: 700 }}>{p.risk}</span></td>
+                                            <td style={{ padding: '0.5rem', fontWeight: 700 }}>{p.adjust}</td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -337,89 +321,48 @@ const Dashboard = () => {
                     </DashboardCard>
                 </div>
 
-                {/* 5. Forecasts & High Risk Zones */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem' }}>
-
-                    {/* Insurance Loss Prediction */}
-                    <DashboardCard title="Insurance Loss Prediction" subtitle="Models estimate future losses to enable reserve preparation." icon={Activity}>
+                {/* 5. Forecasts */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '2rem' }}>
+                    <DashboardCard title="Insurance Loss Prediction" subtitle="Reserve preparation estimation." icon={Activity}>
                         <div style={{ width: '100%', height: '300px', marginTop: '1rem' }}>
                             <ResponsiveContainer>
                                 <AreaChart data={LOSS_PREDICTION}>
-                                    <defs>
-                                        <linearGradient id="colorPred" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="5%" stopColor="#fa4d56" stopOpacity={0.8} />
-                                            <stop offset="95%" stopColor="#fa4d56" stopOpacity={0} />
-                                        </linearGradient>
-                                    </defs>
                                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={theme.gridLine} />
-                                    <XAxis dataKey="month" stroke={theme.textMuted} axisLine={false} tickLine={false} />
-                                    <YAxis stroke={theme.textMuted} axisLine={false} tickLine={false} tickFormatter={(val) => `$${val}M`} />
-                                    <RechartsTooltip contentStyle={{ backgroundColor: theme.tooltipBg, border: `1px solid ${theme.cardBorder}`, borderRadius: '8px', color: theme.text }} />
-                                    <Legend verticalAlign="top" height={36} />
-                                    <Area type="monotone" dataKey="predicted" name="Predicted Loss" stroke="#fa4d56" fillOpacity={1} fill="url(#colorPred)" />
-                                    <Line type="step" dataKey="actual" name="Actual Loss" stroke="#0f62fe" strokeWidth={2} dot={{ r: 4 }} connectNulls={false} />
+                                    <XAxis dataKey="month" stroke={theme.textMuted} />
+                                    <YAxis stroke={theme.textMuted} />
+                                    <RechartsTooltip />
+                                    <Area type="monotone" dataKey="predicted" stroke="#fa4d56" fill="#fa4d5633" />
+                                    <Line type="step" dataKey="actual" stroke="#0f62fe" strokeWidth={2} />
                                 </AreaChart>
                             </ResponsiveContainer>
                         </div>
                     </DashboardCard>
 
-                    {/* Claims Forecast */}
-                    <DashboardCard title="Claims Forecast (2025-2029)" subtitle="Expected insurance claims projected in upcoming years." icon={TrendingUp}>
+                    <DashboardCard title="Claims Forecast" subtitle="Projected insurance claims." icon={TrendingUp}>
                         <div style={{ width: '100%', height: '300px', marginTop: '1rem' }}>
                             <ResponsiveContainer>
                                 <LineChart data={CLAIMS_FORECAST}>
                                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={theme.gridLine} />
-                                    <XAxis dataKey="year" stroke={theme.textMuted} axisLine={false} tickLine={false} />
-                                    <YAxis stroke={theme.textMuted} axisLine={false} tickLine={false} />
-                                    <RechartsTooltip contentStyle={{ backgroundColor: theme.tooltipBg, border: `1px solid ${theme.cardBorder}`, borderRadius: '8px', color: theme.text }} />
-                                    <Legend verticalAlign="top" height={36} />
-                                    <Line type="monotone" dataKey="upperBound" name="Upper Bound 95%" stroke="#393939" strokeDasharray="5 5" dot={false} />
-                                    <Line type="monotone" dataKey="expectedClaims" name="Expected Claims" stroke="#0f62fe" strokeWidth={3} activeDot={{ r: 8 }} />
-                                    <Line type="monotone" dataKey="lowerBound" name="Lower Bound 95%" stroke="#393939" strokeDasharray="5 5" dot={false} />
+                                    <XAxis dataKey="year" stroke={theme.textMuted} />
+                                    <YAxis stroke={theme.textMuted} />
+                                    <RechartsTooltip />
+                                    <Line type="monotone" dataKey="expectedClaims" stroke="#0f62fe" strokeWidth={3} />
                                 </LineChart>
                             </ResponsiveContainer>
                         </div>
                     </DashboardCard>
-
-                    {/* Top High Risk Zones */}
-                    <DashboardCard title="Top 5 High-Risk Zones" subtitle="State-level aggregation of primary threat vectors." icon={AlertTriangle}>
-                        <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                            {TOP_ZONES.map((zone, i) => (
-                                <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1rem', backgroundColor: '#f4f4f4', borderRadius: '8px' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                        <div style={{ width: '28px', height: '28px', backgroundColor: '#ffffff', color: theme.text, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', fontWeight: 600, fontSize: '0.8rem', border: '1px solid #eaeaea' }}>{i + 1}</div>
-                                        <div>
-                                            <div style={{ fontWeight: 600, fontSize: '1.05rem' }}>{zone.state}</div>
-                                            <div style={{ fontSize: '0.85rem', color: theme.textMuted }}>Freq: {zone.freq}</div>
-                                        </div>
-                                    </div>
-                                    <div style={{ textAlign: 'right' }}>
-                                        <div style={{ fontSize: '0.8rem', color: theme.textMuted, marginBottom: '0.2rem' }}>Avg Loss</div>
-                                        <div style={{ fontWeight: 700, color: '#fa4d56', fontSize: '1.1rem' }}>{zone.loss}</div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </DashboardCard>
-
                 </div>
 
+                {/* Data Attribution Section */}
+                <div style={{ marginTop: '4rem' }}>
+                    <DataAttribution />
+                </div>
             </div>
 
-            {/* CSS for animations & styling */}
             <style dangerouslySetInnerHTML={{
                 __html: `
-                @keyframes fadeIn {
-                    from { opacity: 0; transform: translate(-50%, -90%); }
-                    to { opacity: 1; transform: translate(-50%, -100%); }
-                }
-                .dashboard-fade-in {
-                    animation: dashFade 0.6s ease-out forwards;
-                }
-                @keyframes dashFade {
-                    from { opacity: 0; transform: translateY(20px); }
-                    to { opacity: 1; transform: translateY(0); }
-                }
+                .dashboard-fade-in { animation: dashFade 0.6s ease-out forwards; }
+                @keyframes dashFade { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
             `}} />
         </div>
     );

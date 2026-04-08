@@ -6,6 +6,7 @@ import {
     CheckCircle2, AlertTriangle, ArrowRight, Quote, Shield, Activity, Map, BarChart
 } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
+import DataAttribution from '../components/DataAttribution';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
@@ -299,6 +300,11 @@ const Publications = () => {
                                 ))}
                             </div>
                         )}
+                    </motion.div>
+
+                    {/* 11. DATA SOURCES & ATTRIBUTION */}
+                    <motion.div variants={fadeUp}>
+                        <DataAttribution />
                     </motion.div>
 
                 </motion.div>
